@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.auth import get_user_model
 from django.db import models
 
 
@@ -29,4 +30,6 @@ class LineItem(IdMixin, MoneyMixin):
 
 class Transaction(IdMixin, MoneyMixin):
     line_item = models.ForeignKey(LineItem, null=True, on_delete=models.SET_NULL)
-    date = models.DateField(auto_now_add=True)
+    user = models.ForeignKey(get_user_model(), editable=False, null=True, on_delete=models.SET_NULL)
+    date = models.DateField()
+    last_modified = models.DateTimeField(auto_now=True)

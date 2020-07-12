@@ -4,12 +4,8 @@ from api import models
 
 
 class TransactionSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(read_only=True)
+
     class Meta:
         model = models.Transaction
-        fields = (
-            'id',
-            'amount',
-            'type',
-            'line_item',
-            'date'
-        )
+        fields = '__all__'
