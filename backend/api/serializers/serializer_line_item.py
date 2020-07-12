@@ -1,5 +1,7 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
+from api import common_text as text
 from api import models
 
 
@@ -11,6 +13,12 @@ class LineItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        request = self.context.get('request')
-        validated_data['owner'] = request.user
+        if validated_data['sharing'] == 'personal':
+            request = self.context.get('request')
+            validated_data['owner'] = request.user
         return super().create(validated_data)
+
+    def validate_sharing(self, value):
+        if self.instance is not None and self.instance.sharing != value:
+            raise ValidationError(text.template_cannot_edit_property.format('sharing'))
+        return value
