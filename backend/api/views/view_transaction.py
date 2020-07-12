@@ -12,9 +12,6 @@ class TransactionListCreateView(generics.ListCreateAPIView):
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
 
 class TransactionRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
