@@ -2,7 +2,7 @@ from knox.auth import TokenAuthentication
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from api import serializers, models
+from api import serializers, models, filters
 
 
 class BudgetListCreateView(generics.ListCreateAPIView):
@@ -11,6 +11,7 @@ class BudgetListCreateView(generics.ListCreateAPIView):
     queryset = models.Budget.objects.all()
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
+    filterset_class = filters.BudgetFilter
 
 
 class BudgetRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

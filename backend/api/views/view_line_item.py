@@ -2,7 +2,7 @@ from knox.auth import TokenAuthentication
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
-from api import serializers, models
+from api import serializers, models, filters
 
 
 class LineItemListCreateView(generics.ListCreateAPIView):
@@ -11,6 +11,7 @@ class LineItemListCreateView(generics.ListCreateAPIView):
     queryset = models.LineItem.objects.all()
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated, )
+    filterset_class = filters.LineItemFilter
 
 
 class LineItemRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
