@@ -10,14 +10,6 @@ class IdMixin(models.Model):
         abstract = True
 
 
-class StartEndMixin(models.Model):
-    start_date = models.DateField()
-    end_date = models.DateField()
-
-    class Meta:
-        abstract = True
-
-
 class MoneyMixin(models.Model):
     amount = models.FloatField()
     type = models.CharField(max_length=7, choices=(('income', 'income'), ('expense', 'expense')))
@@ -26,11 +18,12 @@ class MoneyMixin(models.Model):
         abstract = True
 
 
-class Budget(IdMixin, StartEndMixin):
-    pass
+class Budget(IdMixin):
+    start_date = models.DateField()
+    end_date = models.DateField()
 
 
-class LineItem(IdMixin, StartEndMixin, MoneyMixin):
+class LineItem(IdMixin, MoneyMixin):
     budget = models.ForeignKey(Budget, null=True, on_delete=models.SET_NULL)
 
 
