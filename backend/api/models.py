@@ -26,10 +26,13 @@ class Budget(IdMixin):
 
 class LineItem(IdMixin, MoneyMixin):
     budget = models.ForeignKey(Budget, null=True, on_delete=models.SET_NULL)
+    category = models.CharField(max_length=100)
 
 
 class Transaction(IdMixin, MoneyMixin):
     line_item = models.ForeignKey(LineItem, null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(get_user_model(), editable=False, null=True, on_delete=models.SET_NULL)
+    merchant = models.CharField(max_length=100)
+    comment = models.TextField(blank=True)
     date = models.DateField()
     last_modified = models.DateTimeField(auto_now=True)
