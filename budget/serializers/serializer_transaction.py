@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from api import common_text as text
-from api import models
+from budget import common_text as text
+from budget import models
 
 
 class TransactionSerializer(serializers.ModelSerializer):

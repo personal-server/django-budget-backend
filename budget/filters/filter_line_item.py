@@ -1,6 +1,6 @@
 from django_filters import rest_framework as django_filters
 
-from api import models
+from budget import models
 
 
 class LineItemFilter(django_filters.FilterSet):

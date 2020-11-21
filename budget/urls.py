@@ -1,6 +1,6 @@
 from django.urls import path
 
-from api import views
+from budget import views
 
 urlpatterns = [
     path('budget', views.BudgetListCreateView.as_view(), name='budget-lc'),
