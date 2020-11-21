@@ -2,6 +2,7 @@ from django.urls import path
 
 from budget import views
 
+
 urlpatterns = [
     path('budget', views.BudgetListCreateView.as_view(), name='budget-lc'),
     path('budget/<uuid:id>', views.BudgetRetrieveUpdateDestroyView.as_view(), name='budget-rud'),

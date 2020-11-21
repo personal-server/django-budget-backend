@@ -1,5 +1,5 @@
 from os import path
-from setuptools import setup
+from setuptools import setup, find_packages
 
 here = path.abspath(path.dirname(__file__))
 
@@ -35,7 +35,7 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     keywords='django budget backend',
-    packages=['budget'],
+    packages=find_packages(exclude=['budget_project']),
     python_requires='~=3.8',
     setup_requires=setup_requires,
     install_requires=install_requires,
