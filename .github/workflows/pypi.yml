@@ -2,7 +2,7 @@ name: Publish to PyPI and Test PyPI
 on:
   push:
     tags:
-      - 'v[0-9]+(\.[0-9]+){1,2}'
+      - 'v*'
 jobs:
   build-n-publish:
     name: Publish to PyPI and Test PyPI
